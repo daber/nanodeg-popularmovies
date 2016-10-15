@@ -8,8 +8,8 @@
     tools:context="com.abitcreative.popularmovies.activites.MovieListActivity">
 
     <fragment
-        android:id="@+id/fragment_movie_list"
+        android:id="@+id/fragment_movie_detail"
+        android:name="com.abitcreative.popularmovies.fragments.DetailFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.abitcreative.popularmovies.fragments.MovieListFragment"/>
+        android:layout_height="match_parent" />
 </FrameLayout>

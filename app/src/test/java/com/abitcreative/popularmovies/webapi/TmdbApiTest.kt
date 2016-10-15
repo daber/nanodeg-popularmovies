@@ -43,7 +43,7 @@ class TmdbApiTest{
     fun testGetImagePath(){
         val imagePath = TmdbApi.getImageUrl("/8NVYY7BH8OhPCRiIREB0SBu9Ly5.jpg");
 
-        assertEquals("${BuildConfig.BASE_URL}/t/p/w158/8NVYY7BH8OhPCRiIREB0SBu9Ly5.jpg",imagePath)
+        assertEquals("${BuildConfig.BASE_IMAGE_URL}/t/p/w154/8NVYY7BH8OhPCRiIREB0SBu9Ly5.jpg",imagePath)
 
     }
 }

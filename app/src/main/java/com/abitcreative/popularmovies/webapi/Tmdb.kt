@@ -20,7 +20,7 @@ private val delegate = Retrofit.Builder().addConverterFactory(jsonConverter).bas
 
 object TmdbApi:TmdbInterface by delegate{
     //image comes with leading slash from api
-    fun getImageUrl(image:String, width:String ="w158"):String = "${BuildConfig.BASE_URL}/t/p/$width$image";
+    fun getImageUrl(image:String, width:String ="w154"):String = "${BuildConfig.BASE_IMAGE_URL}/t/p/$width$image";
 }
 
 interface TmdbInterface {
@@ -28,7 +28,7 @@ interface TmdbInterface {
     fun  getPopularMovies(@Query("api_key") apikey:String = BuildConfig.API_KEY_V3): Call<ListResponse>
 
     @GET("t/p/{width}{image}")
-    fun getImage(@Path("image")image:String, @Path("width")width:String ="w158"):Call<ResponseBody>
+    fun getImage(@Path("image")image:String, @Path("width")width:String ="w154"):Call<ResponseBody>
 
 
     @GET("3/movie/top_rated")
