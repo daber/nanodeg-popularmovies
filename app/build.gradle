@@ -14,6 +14,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField('String','API_KEY_V3','"your_password"')
+        buildConfigField('String', 'BASE_URL', '"https://api.themoviedb.org"')
 
         packagingOptions {
             exclude 'META-INF/DEPENDENCIES'
@@ -51,7 +52,7 @@ dependencies {
 
     //retofit conversion;
     compile "com.squareup.retrofit2:retrofit:$retrofitVer"
-    compile "com.squareup.retrofit2:converter-jackson:$retrofitVer"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVer"
 
 }
 repositories {
