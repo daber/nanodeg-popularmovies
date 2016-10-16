@@ -67,17 +67,18 @@ class MovieListFragment : Fragment() {
         return v;
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         refresh()
         prefs.registerOnSharedPreferenceChangeListener(prefListener)
     }
 
-    override fun onStop() {
+    override fun onDestroyView() {
         prefs.unregisterOnSharedPreferenceChangeListener(prefListener)
         asyncTask?.cancel(false)
-        super.onStop()
+        super.onDestroyView()
     }
+
 
     fun onClick(movieId: Int) {
         val i = Intent(context, DetailActivity::class.java).putExtra(Intent.EXTRA_UID, movieId)
