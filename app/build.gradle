@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
-        //SETUP THIS WITH YOUR OWN API
+        //SETUP THIS WITH YOUR OWN API_V3 KEY
         buildConfigField('String', 'API_KEY_V3', '"your_password"')
 
 
