@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="defaultSortOrderValue" translatable="false">@string/popularSortOrderValue</string>
+    <string name="popularSortOrderValue" translatable="false">POPULAR</string>
+    <string name="topRatedSortOrderValue" translatable="false">TOP_RATED</string>
+
+    <string name="popularSortOrderEntry">Popular</string>
+    <string name="topRatedSortOrderEntry">Top Rated</string>
+
+    <string-array name="sortOrderEntries">
+        <item>@string/popularSortOrderEntry</item>
+        <item>@string/topRatedSortOrderEntry</item>
+    </string-array>
+
+    <string-array name="sortOrderValues">
+        <item>@string/popularSortOrderValue</item>
+        <item>@string/topRatedSortOrderValue</item>
+    </string-array>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="@string/defaultSortOrderValue"
+        android:dialogTitle="Choose sort order"
+        android:entries="@array/sortOrderEntries"
+        android:entryValues="@array/sortOrderValues"
+        android:key="SORT_ORDER"
+        android:title="@string/sort_order">
+
+    </ListPreference>
+</PreferenceScreen>

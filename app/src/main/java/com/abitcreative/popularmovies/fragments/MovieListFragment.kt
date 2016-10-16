@@ -1,16 +1,17 @@
 package com.abitcreative.popularmovies.fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.StrictMode
+import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.abitcreative.popularmovies.R
 import com.abitcreative.popularmovies.activites.DetailActivity
+import com.abitcreative.popularmovies.activites.SettingsActivity
 import com.abitcreative.popularmovies.adapters.MovieItemViewHolder
 import com.abitcreative.popularmovies.adapters.MovieListAdapter
 import com.abitcreative.popularmovies.async.NetworkAsync
@@ -27,7 +28,39 @@ class MovieListFragment : Fragment() {
     internal lateinit var recyclerView: RecyclerView
     internal var adapter: RecyclerView.Adapter<MovieItemViewHolder>? = null
     internal var asyncTask: NetworkAsync<ListResponse>? = null
+    internal lateinit var prefs: SharedPreferences
+    val prefListener = object : SharedPreferences.OnSharedPreferenceChangeListener {
+        override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+            refresh()
+        }
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+        prefs = PreferenceManager.getDefaultSharedPreferences(context)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater!!.inflate(R.menu.app_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item!!.itemId
+        when (id) {
+            R.id.settings -> {
+                activity.startActivity(Intent(activity, SettingsActivity::class.java))
+                return true
+            }
+            R.id.refresh -> {
+                refresh()
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -40,9 +73,11 @@ class MovieListFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         refresh()
+        prefs.registerOnSharedPreferenceChangeListener(prefListener)
     }
 
     override fun onStop() {
+        prefs.unregisterOnSharedPreferenceChangeListener(prefListener)
         asyncTask?.cancel(false)
         super.onStop()
     }
@@ -55,11 +90,18 @@ class MovieListFragment : Fragment() {
     fun onResult(result: ListResponse) {
         adapter = MovieListAdapter(result.results, { onClick(it) })
         this@MovieListFragment.adapter = adapter
-        recyclerView.adapter = adapter
+        recyclerView.swapAdapter(adapter, false)
     }
 
-    private fun refresh() {
-        val call = TmdbApi.getPopularMovies()
+    fun refresh() {
+
+        val sortOrder = prefs.getString("SORT_ORDER", null)
+        //null is impossible as default values are created with application object
+        val call = if (sortOrder == "POPULAR") {
+            TmdbApi.getPopularMovies()
+        } else {
+            TmdbApi.getTopRated()
+        }
         val task = NetworkAsync(call, { onResult(it) })
         task.execute()
     }

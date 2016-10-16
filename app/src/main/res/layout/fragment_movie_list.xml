@@ -4,6 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.abitcreative.popularmovies.fragments.MovieListFragment"
     android:id="@+id/recycler_view"
+    android:paddingTop="16dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
 
     >
 
