@@ -3,7 +3,6 @@ package com.abitcreative.popularmovies.fragments
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.StrictMode
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -16,9 +15,7 @@ import com.abitcreative.popularmovies.adapters.MovieItemViewHolder
 import com.abitcreative.popularmovies.adapters.MovieListAdapter
 import com.abitcreative.popularmovies.async.NetworkAsync
 import com.abitcreative.popularmovies.webapi.ListResponse
-import com.abitcreative.popularmovies.webapi.ListResult
 import com.abitcreative.popularmovies.webapi.TmdbApi
-import retrofit2.Call
 
 /**
  * Created by daber on 15/10/16.
