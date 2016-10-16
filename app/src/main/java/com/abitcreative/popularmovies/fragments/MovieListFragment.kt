@@ -7,7 +7,9 @@ import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import com.abitcreative.popularmovies.R
 import com.abitcreative.popularmovies.activites.DetailActivity
 import com.abitcreative.popularmovies.activites.SettingsActivity
@@ -22,6 +24,7 @@ import com.abitcreative.popularmovies.webapi.TmdbApi
  */
 class MovieListFragment : Fragment() {
 
+    private val TAG = MovieListFragment::class.java.simpleName
     internal lateinit var recyclerView: RecyclerView
     internal var adapter: RecyclerView.Adapter<MovieItemViewHolder>? = null
     internal var asyncTask: NetworkAsync<ListResponse>? = null
@@ -85,7 +88,13 @@ class MovieListFragment : Fragment() {
         activity.startActivity(i)
     }
 
-    fun onResult(result: ListResponse) {
+
+    fun onMoviesListResult(result: ListResponse?) {
+        if (result == null) {
+            Log.e(TAG, "Returned response was null")
+            Toast.makeText(context, R.string.could_not_get_data, Toast.LENGTH_LONG).show()
+            return
+        }
         adapter = MovieListAdapter(result.results, { onClick(it) })
         this@MovieListFragment.adapter = adapter
         recyclerView.swapAdapter(adapter, false)
@@ -100,7 +109,7 @@ class MovieListFragment : Fragment() {
         } else {
             TmdbApi.getTopRated()
         }
-        val task = NetworkAsync(call, { onResult(it) })
+        val task = NetworkAsync(call, { onMoviesListResult(it) })
         task.execute()
     }
 

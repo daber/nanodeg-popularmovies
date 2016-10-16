@@ -8,4 +8,5 @@
     <string name="refresh">refresh</string>
     <string name="sort_order">Sort Order</string>
     <string name="user_rating">User Rating:</string>
+    <string name="could_not_get_data">Could not get data from server</string>
 </resources>

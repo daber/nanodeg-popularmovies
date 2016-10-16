@@ -3,11 +3,13 @@ package com.abitcreative.popularmovies.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.abitcreative.popularmovies.R
 import com.abitcreative.popularmovies.async.NetworkAsync
 import com.abitcreative.popularmovies.webapi.DetailResponse
@@ -20,6 +22,7 @@ import java.text.DecimalFormat
  */
 
 class DetailFragment : Fragment() {
+    val TAG = DetailFragment::class.java.simpleName
     lateinit var poster: ImageView
     lateinit var title: TextView
     lateinit var overview: TextView
@@ -58,7 +61,12 @@ class DetailFragment : Fragment() {
     }
 
 
-    fun onDetail(detailResponse: DetailResponse) {
+    fun onDetail(detailResponse: DetailResponse?) {
+        if (detailResponse == null) {
+            Log.e(TAG, "Returned response was null")
+            Toast.makeText(context, R.string.could_not_get_data, Toast.LENGTH_LONG).show()
+            return
+        }
         val posterUrl = TmdbApi.getImageUrl(detailResponse.poster_path)
         val titleText = detailResponse.original_title
         val overviewText = detailResponse.overview
