@@ -7,7 +7,7 @@ import retrofit2.Call
 /**
  * Created by daber on 15/10/16.
  */
-open class NetworkAsync<T>(val call: Call<T>, val onResult: (T?) -> Unit) : AsyncTask<Void, Void, T?>() {
+open class NetworkAsync2<T>(val call: Call<T>, val onResult: (T?) -> Unit) : AsyncTask<Void, Void, T>() {
     val TAG = javaClass.simpleName
     override fun doInBackground(vararg params: Void?): T? {
         try {
