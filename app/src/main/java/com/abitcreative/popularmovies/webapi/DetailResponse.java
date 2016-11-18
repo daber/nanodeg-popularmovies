@@ -14,6 +14,6 @@ public class DetailResponse {
     public String poster_path;
     public String release_date;
     public Double vote_average;
-    public List<Review> reviews;
-    public List<Video> videos;
+    public ReviewList reviews;
+    public VideoList videos;
 }

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:id="@+id/author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Author"
-        />
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="Author" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/review_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Some comment left by the author about the movie"
-        />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="Some comment left by the author about the movie" />
 
 </LinearLayout>

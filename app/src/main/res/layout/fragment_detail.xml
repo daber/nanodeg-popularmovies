@@ -92,12 +92,36 @@
             android:padding="8dp"
             android:scaleType="fitCenter" />
 
-        <android.support.v7.widget.RecyclerView android:id="@+id/reviews"
+        <TextView
+            android:id="@+id/trailers_label"
+            android:layout_below="@id/poster_image"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="8dp"
+            android:text="Trailers:" />
+
+        <android.support.v7.widget.RecyclerView android:id="@+id/videos"
+            android:layout_below="@id/trailers_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
 
-        <android.support.v7.widget.RecyclerView android:id="@+id/videos"
+        <TextView
+            android:id="@+id/reviews_label"
+            android:layout_below="@id/videos"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="8dp"
+            android:text="Reviews:" />
+
+        <android.support.v7.widget.RecyclerView android:id="@+id/reviews"
+            android:layout_below="@id/reviews_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
         />

@@ -1,11 +1,11 @@
 package com.abitcreative.popularmovies.webapi;
 
+import java.util.List;
+
 /**
  * Created by daber on 18/11/16.
  */
 
-public class Video {
-    public String id;
-    public String key;
-    public String name;
+public class VideoList {
+    public List<Video> results;
 }

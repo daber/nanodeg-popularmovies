@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abitcreative.popularmovies.R;
+import com.abitcreative.popularmovies.adapters.ReviewRecyclerViewAdapter;
+import com.abitcreative.popularmovies.adapters.VideosRecyclerViewAdapter;
 import com.abitcreative.popularmovies.async.NetworkAsync;
 import com.abitcreative.popularmovies.webapi.DetailResponse;
+import com.abitcreative.popularmovies.webapi.Review;
 import com.abitcreative.popularmovies.webapi.TmdbApi;
+import com.abitcreative.popularmovies.webapi.Video;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import retrofit2.Call;
 
@@ -32,6 +40,9 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
     private TextView overview = null;
     private TextView userrating = null;
     private TextView releasedate = null;
+    private RecyclerView reviews = null;
+    private RecyclerView videos = null;
+
     private NetworkAsync<DetailResponse> asyncTask = null;
 
     @Nullable
@@ -44,6 +55,11 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
         overview = (TextView) v.findViewById(R.id.overview_text);
         userrating = (TextView) v.findViewById(R.id.user_rating);
         releasedate = (TextView) v.findViewById(R.id.relase_date);
+        reviews = (RecyclerView) v.findViewById(R.id.reviews);
+        videos = (RecyclerView) v.findViewById(R.id.videos);
+
+        reviews.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        videos.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
         return v;
     }
@@ -80,6 +96,12 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
         String overviewText = response.overview;
         Double userratingDouble = response.vote_average;
         String releasedateText = response.release_date;
+        List<Video> videoList = response.videos.results;
+        List<Review> reviewList = response.reviews.results;
+
+        videos.setAdapter( new VideosRecyclerViewAdapter(getContext(),videoList));
+        reviews.setAdapter(new ReviewRecyclerViewAdapter(reviewList));
+
 
         Picasso.with(getContext()).load(posterUrl).into(poster);
         title.setText(titleText);
