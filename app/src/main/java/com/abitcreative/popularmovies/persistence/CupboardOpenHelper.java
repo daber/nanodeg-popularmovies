@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.abitcreative.popularmovies.webapi.ListResult;
+
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
@@ -18,7 +20,7 @@ public class CupboardOpenHelper  extends SQLiteOpenHelper{
     }
 
     static{
-        cupboard().register(FavoriteMovie.class);
+        cupboard().register(ListResult.class);
     }
 
     @Override

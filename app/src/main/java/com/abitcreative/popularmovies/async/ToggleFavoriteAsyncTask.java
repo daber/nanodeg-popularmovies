@@ -2,7 +2,8 @@ package com.abitcreative.popularmovies.async;
 
 import android.content.Context;
 
-import com.abitcreative.popularmovies.persistence.FavoriteMovie;
+
+import com.abitcreative.popularmovies.webapi.ListResult;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -26,13 +27,13 @@ public class ToggleFavoriteAsyncTask extends CupboardAsyncTask<Boolean,Void,Bool
         try {
             Boolean enable = params[0];
             if (enable) {
-                FavoriteMovie fm = new FavoriteMovie();
-                fm.id = id;
-                fm.posterUrl = poster_url;
-                cupboard().withDatabase(database).put(fm);
+                ListResult movie = new ListResult();
+                movie.id = id;
+                movie.poster_path = poster_url;
+                cupboard().withDatabase(database).put(movie);
                 return true;
             } else {
-                cupboard().withDatabase(database).delete(FavoriteMovie.class,id);
+                cupboard().withDatabase(database).delete(ListResult.class,"id = ?",Long.toString(id));
                 return false;
             }
         }finally {

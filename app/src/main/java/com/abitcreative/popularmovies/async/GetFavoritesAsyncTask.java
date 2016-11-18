@@ -1,15 +1,11 @@
 package com.abitcreative.popularmovies.async;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 
-import com.abitcreative.popularmovies.persistence.CupboardOpenHelper;
-import com.abitcreative.popularmovies.persistence.FavoriteMovie;
+import com.abitcreative.popularmovies.webapi.ListResult;
 
 import java.util.List;
 
-import nl.qbusict.cupboard.DatabaseCompartment;
 import nl.qbusict.cupboard.QueryResultIterable;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
@@ -18,15 +14,14 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
  * Created by daber on 18/11/16.
  */
 
-public class GetFavoritesAsyncTask extends CupboardAsyncTask<Void, Void, List<FavoriteMovie>> {
+public class GetFavoritesAsyncTask extends CupboardAsyncTask<Void, Void, List<ListResult>> {
 
     private final OnFavoritesResult callback;
-    private SQLiteDatabase database;
 
     @Override
-    protected List<FavoriteMovie> doInBackground(Void... params) {
+    protected List<ListResult> doInBackground(Void... params) {
         try {
-            QueryResultIterable<FavoriteMovie> result = cupboard().withDatabase(database).query(FavoriteMovie.class).query();
+            QueryResultIterable<ListResult> result = cupboard().withDatabase(database).query(ListResult.class).query();
             return result.list();
         } finally {
             database.close();
@@ -34,7 +29,7 @@ public class GetFavoritesAsyncTask extends CupboardAsyncTask<Void, Void, List<Fa
     }
 
     public interface OnFavoritesResult {
-        void onFavoritesResult(List<FavoriteMovie> movies);
+        void onFavoritesResult(List<ListResult> movies);
     }
 
     public GetFavoritesAsyncTask(Context ctx, OnFavoritesResult callback) {
@@ -43,8 +38,8 @@ public class GetFavoritesAsyncTask extends CupboardAsyncTask<Void, Void, List<Fa
     }
 
     @Override
-    protected void onPostExecute(List<FavoriteMovie> favoriteMovies) {
-        callback.onFavoritesResult(favoriteMovies);
+    protected void onPostExecute(List<ListResult> list) {
+        callback.onFavoritesResult(list);
 
     }
 }

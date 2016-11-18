@@ -11,10 +11,12 @@
     <string-array name="sortOrderEntries">
         <item>@string/popularSortOrderEntry</item>
         <item>@string/topRatedSortOrderEntry</item>
+        <item>@string/favoritesSortOrderEntry</item>
     </string-array>
 
     <string-array name="sortOrderValues">
         <item>@string/popularSortOrderValue</item>
         <item>@string/topRatedSortOrderValue</item>
+        <item>@string/favoritesSortOrderValue</item>
     </string-array>
 </resources>

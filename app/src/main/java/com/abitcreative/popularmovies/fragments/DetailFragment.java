@@ -52,7 +52,7 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
 
     private NetworkAsync<DetailResponse> asyncTask = null;
     private long movie_id;
-    private String posterUrl;
+    private String posterPath;
     private boolean isFavorite;
 
     @Override
@@ -113,7 +113,7 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
 
     private void toggleFavorite() {
         boolean targetState = !isFavorite;
-        ToggleFavoriteAsyncTask task = new ToggleFavoriteAsyncTask(getContext(), movie_id, posterUrl) {
+        ToggleFavoriteAsyncTask task = new ToggleFavoriteAsyncTask(getContext(), movie_id, posterPath) {
             @Override
             protected void onPostExecute(Boolean aBoolean) {
                 isFavorite = aBoolean;
@@ -151,7 +151,8 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
             Toast.makeText(getContext(), R.string.could_not_get_data, Toast.LENGTH_LONG).show();
             return;
         }
-        posterUrl = TmdbApi.INSTANCE.getImageUrl(response.poster_path);
+        posterPath = response.poster_path;
+        String posterUrl = TmdbApi.INSTANCE.getImageUrl(response.poster_path);
         String titleText = response.original_title;
         String overviewText = response.overview;
         Double userratingDouble = response.vote_average;

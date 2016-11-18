@@ -5,7 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 import com.abitcreative.popularmovies.persistence.CupboardOpenHelper;
-import com.abitcreative.popularmovies.persistence.FavoriteMovie;
+import com.abitcreative.popularmovies.webapi.ListResult;
+
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -24,7 +25,7 @@ public class CheckFavoriteAsyncTask extends CupboardAsyncTask<Long, Void, Boolea
     protected Boolean doInBackground(Long... params) {
         try {
             String id = params[0].toString();
-            FavoriteMovie movie = cupboard().withDatabase(database).query(FavoriteMovie.class).withSelection("id = ?", id).get();
+            ListResult movie = cupboard().withDatabase(database).query(ListResult.class).withSelection("id = ?", id).get();
             return movie != null;
         }finally {
             database.close();
