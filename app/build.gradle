@@ -15,8 +15,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
-        //SETUP THIS WITH YOUR OWN API_V3 KEY
-        buildConfigField('String', 'API_KEY_V3', '"your_password"')
+        //SETUP THIS WITH YOUR OWN API_V3 KEY in gradle properties under that key
+        buildConfigField('String', 'API_KEY_V3', popularmovies_api_key)
 
 
         buildConfigField('String', 'BASE_URL', '"https://api.themoviedb.org"')
