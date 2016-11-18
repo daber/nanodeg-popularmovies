@@ -3,10 +3,11 @@
     <string name="defaultSortOrderValue" translatable="false">@string/popularSortOrderValue</string>
     <string name="popularSortOrderValue" translatable="false">POPULAR</string>
     <string name="topRatedSortOrderValue" translatable="false">TOP_RATED</string>
+    <string name="favoritesSortOrderValue" translatable="false">FAVORITES</string>
 
     <string name="popularSortOrderEntry">Popular</string>
     <string name="topRatedSortOrderEntry">Top Rated</string>
-
+    <string name="favoritesSortOrderEntry">Favorites</string>
     <string-array name="sortOrderEntries">
         <item>@string/popularSortOrderEntry</item>
         <item>@string/topRatedSortOrderEntry</item>

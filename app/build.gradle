@@ -14,7 +14,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-
         //SETUP THIS WITH YOUR OWN API_V3 KEY in gradle properties under that key
         buildConfigField('String', 'API_KEY_V3', popularmovies_api_key)
 
@@ -57,10 +56,15 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:design:24.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     testCompile 'junit:junit:4.12'
+    compile 'nl.qbusict:cupboard:2.1.4'
+
+
 }
 
 repositories {
     mavenCentral()
+
 }
