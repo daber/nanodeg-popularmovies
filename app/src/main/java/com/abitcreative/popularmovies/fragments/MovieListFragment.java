@@ -2,6 +2,7 @@ package com.abitcreative.popularmovies.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -22,10 +23,13 @@ import com.abitcreative.popularmovies.activites.DetailActivity;
 import com.abitcreative.popularmovies.activites.SettingsActivity;
 import com.abitcreative.popularmovies.adapters.MovieItemViewHolder;
 import com.abitcreative.popularmovies.adapters.MovieListAdapter;
+import com.abitcreative.popularmovies.async.GetFavoritesAsyncTask;
 import com.abitcreative.popularmovies.async.NetworkAsync;
 import com.abitcreative.popularmovies.webapi.ListResponse;
 import com.abitcreative.popularmovies.webapi.ListResult;
 import com.abitcreative.popularmovies.webapi.TmdbApi;
+
+import java.util.List;
 
 import retrofit2.Call;
 
@@ -33,12 +37,12 @@ import retrofit2.Call;
  * Created by daber on 19/10/16.
  */
 
-public class MovieListFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, MovieListAdapter.MovieClickedListener, NetworkAsync.OnNetworkResponseListener<ListResponse> {
+public class MovieListFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, MovieListAdapter.MovieClickedListener, NetworkAsync.OnNetworkResponseListener<ListResponse>,GetFavoritesAsyncTask.OnFavoritesResult {
 
     private static final String TAG = MovieListFragment.class.getSimpleName();
     RecyclerView recyclerView;
     RecyclerView.Adapter<MovieItemViewHolder> adapter;
-    NetworkAsync<ListResponse> asyncTask;
+    AsyncTask asyncTask;
     SharedPreferences prefs;
 
     @Override
@@ -122,12 +126,26 @@ public class MovieListFragment extends Fragment implements SharedPreferences.OnS
         //null is impossible as default values are created with application object
         Call<ListResponse> call;
 
-        if (sortOrder.equals("POPULAR")) {
-            call = TmdbApi.INSTANCE.getPopularMovies();
-        } else {
-            call = TmdbApi.INSTANCE.getTopRated();
+        switch(sortOrder){
+            case "POPULAR":
+                call = TmdbApi.INSTANCE.getPopularMovies();
+                asyncTask = new NetworkAsync<>(call, this);
+                break;
+            case "TOP_RATED":
+                call = TmdbApi.INSTANCE.getTopRated();
+                asyncTask = new NetworkAsync<>(call, this);
+                break;
+            case "FAVORITES":
+                asyncTask = new GetFavoritesAsyncTask(getContext(),this);
+                break;
         }
-        asyncTask = new NetworkAsync<>(call, this);
-        asyncTask.execute();
+
+        asyncTask.execute(new Void[0]);
+    }
+
+    @Override
+    public void onFavoritesResult(List<ListResult> movies) {
+        adapter = new MovieListAdapter(movies, this);
+        recyclerView.swapAdapter(adapter, false);
     }
 }

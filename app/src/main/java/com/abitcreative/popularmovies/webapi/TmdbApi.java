@@ -38,7 +38,7 @@ public enum TmdbApi {
     }
 
     public Call<DetailResponse> getMovieDetails(Long movie_id) {
-        return delegate.getMovieDetails(movie_id, BuildConfig.API_KEY_V3);
+        return delegate.getMovieDetails(movie_id, BuildConfig.API_KEY_V3,"videos,reviews");
     }
 
     public String getImageUrl(String image) {

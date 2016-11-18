@@ -1,5 +1,7 @@
 package com.abitcreative.popularmovies.webapi;
 
+import java.util.List;
+
 /**
  * Created by daber on 19/10/16.
  */
@@ -12,5 +14,6 @@ public class DetailResponse {
     public String poster_path;
     public String release_date;
     public Double vote_average;
-
+    public ReviewList reviews;
+    public VideoList videos;
 }

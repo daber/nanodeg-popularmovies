@@ -1,97 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/title_text"
+                style="@style/TextAppearance.AppCompat.Display1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:gravity="center_horizontal"
+                android:padding="8dp"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/user_rating_label"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/title_text"
+                android:padding="8dp"
+
+                android:text="@string/user_rating" />
+
+            <TextView
+                android:id="@+id/user_rating"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/title_text"
+                android:layout_toRightOf="@+id/user_rating_label"
+                android:gravity="right"
+                android:padding="8dp"
+                tools:text="4.6" />
+
+
+            <TextView
+                android:id="@+id/relase_date_label"
+
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/user_rating"
+                android:padding="8dp"
+
+                android:text="Release date:" />
+
+            <TextView
+                android:id="@+id/relase_date"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/user_rating"
+                android:layout_toRightOf="@+id/relase_date_label"
+                android:gravity="right"
+                android:padding="8dp"
+                tools:text="2015/07/08" />
+
+            <TextView
+                android:id="@+id/overview_text"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relase_date"
+                android:padding="8dp" />
+
+            <ImageView
+                android:id="@+id/poster_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/overview_text"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/poster"
+                android:padding="8dp"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/trailers_label"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/poster_image"
+                android:padding="8dp"
+                android:text="Trailers:" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/videos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/trailers_label" />
+
+            <TextView
+                android:id="@+id/reviews_label"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/videos"
+                android:padding="8dp"
+                android:text="Reviews:" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reviews_label"
+                android:layout_marginBottom="48dp" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
-
-        <TextView
-            android:id="@+id/title_text"
-            style="@style/TextAppearance.AppCompat.Display1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:gravity="center_horizontal"
-            android:padding="8dp"
-            tools:text="Title" />
-
-        <TextView
-            android:id="@+id/user_rating_label"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/title_text"
-            android:padding="8dp"
-
-            android:text="@string/user_rating" />
-
-        <TextView
-            android:id="@+id/user_rating"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/title_text"
-            android:layout_toRightOf="@+id/user_rating_label"
-            android:gravity="right"
-            android:padding="8dp"
-            tools:text="4.6" />
-
-
-        <TextView
-            android:id="@+id/relase_date_label"
-
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/user_rating"
-            android:padding="8dp"
-
-            android:text="Release date:" />
-
-        <TextView
-            android:id="@+id/relase_date"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/user_rating"
-            android:layout_toRightOf="@+id/relase_date_label"
-            android:gravity="right"
-            android:padding="8dp"
-            tools:text="2015/07/08" />
-
-        <TextView
-            android:id="@+id/overview_text"
-            style="@style/TextAppearance.AppCompat.Subhead"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/relase_date"
-            android:padding="8dp" />
-
-        <ImageView
-            android:id="@+id/poster_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/overview_text"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/poster"
-            android:padding="8dp"
-            android:scaleType="fitCenter" />
-
-
-    </RelativeLayout>
-</ScrollView>
+        android:layout_margin="16dp"
+        app:layout_anchor="@id/scroll_view"
+        app:layout_anchorGravity="bottom|right"
+        android:src="@drawable/ic_favorite_white_24dp" />
+</android.support.design.widget.CoordinatorLayout>
