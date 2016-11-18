@@ -92,6 +92,18 @@
             android:padding="8dp"
             android:scaleType="fitCenter" />
 
+        <android.support.v7.widget.RecyclerView android:id="@+id/reviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <android.support.v7.widget.RecyclerView android:id="@+id/videos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+
+
+
 
     </RelativeLayout>
 </ScrollView>

@@ -24,8 +24,7 @@ interface TmdbInterface {
 
 
     @GET("3/movie/{movie_id}")
-    Call<DetailResponse> getMovieDetails(@Path("movie_id") Long movie_id, @Query("api_key") String apikey);
-
+    Call<DetailResponse> getMovieDetails(@Path("movie_id") long movie_id, @Query("api_key") String apikey);
 
 }
 
