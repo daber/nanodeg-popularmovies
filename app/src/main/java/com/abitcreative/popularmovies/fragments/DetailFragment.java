@@ -3,11 +3,6 @@ package com.abitcreative.popularmovies.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.abitcreative.popularmovies.R;
 import com.abitcreative.popularmovies.adapters.ReviewRecyclerViewAdapter;
 import com.abitcreative.popularmovies.adapters.VideosRecyclerViewAdapter;
 import com.abitcreative.popularmovies.async.CheckFavoriteAsyncTask;
 import com.abitcreative.popularmovies.async.NetworkAsync;
 import com.abitcreative.popularmovies.async.ToggleFavoriteAsyncTask;
-import com.abitcreative.popularmovies.persistence.CupboardOpenHelper;
 import com.abitcreative.popularmovies.webapi.DetailResponse;
 import com.abitcreative.popularmovies.webapi.Review;
 import com.abitcreative.popularmovies.webapi.TmdbApi;
 import com.abitcreative.popularmovies.webapi.Video;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -74,7 +74,7 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
         reviews = (RecyclerView) v.findViewById(R.id.reviews);
         videos = (RecyclerView) v.findViewById(R.id.videos);
         fab = (FloatingActionButton) v.findViewById(R.id.fab);
-        fab.setVisibility(View.INVISIBLE);
+        fab.hide();
 
 
         reviews.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -95,7 +95,7 @@ public class DetailFragment extends Fragment implements NetworkAsync.OnNetworkRe
     }
 
     private void updateFabState() {
-        fab.setVisibility(View.VISIBLE);
+        fab.show();
         if (isFavorite) {
             fab.setImageResource(R.drawable.ic_favorite_border_white_24dp);
         } else {

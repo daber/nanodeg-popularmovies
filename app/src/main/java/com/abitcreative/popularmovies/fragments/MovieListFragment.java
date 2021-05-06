@@ -5,10 +5,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.abitcreative.popularmovies.R;
 import com.abitcreative.popularmovies.activites.DetailActivity;
@@ -119,7 +120,7 @@ public class MovieListFragment extends Fragment implements SharedPreferences.OnS
         adapter = new MovieListAdapter(response.results, this);
         recyclerView.swapAdapter(adapter, false);
     }
-
+    @SuppressWarnings("unchecked")
     public void refresh() {
 
         String sortOrder = prefs.getString("SORT_ORDER", null);

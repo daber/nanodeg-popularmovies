@@ -2,20 +2,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
 
     defaultConfig {
         applicationId "com.abitcreative.popularmovies"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //SETUP THIS WITH YOUR OWN API_V3 KEY in gradle properties under that key
-        buildConfigField('String', 'API_KEY_V3', popularmovies_api_key)
+        buildConfigField('String', 'API_KEY_V3', "\"6c149fc83389bf6d153d9ec822f42e64\"")
 
 
         buildConfigField('String', 'BASE_URL', '"https://api.themoviedb.org"')
@@ -48,23 +48,24 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //retofit conversion;
-    compile "com.squareup.retrofit2:retrofit:$retrofitVer"
-    compile "com.squareup.retrofit2:converter-gson:$retrofitVer"
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
-    testCompile 'junit:junit:4.12'
-    compile 'nl.qbusict:cupboard:2.1.4'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVer"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVer"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    testImplementation 'junit:junit:4.12'
+    implementation 'nl.qbusict:cupboard:2.1.4'
 
 
 }
 
 repositories {
     mavenCentral()
+    google()
 
 }

@@ -1,9 +1,10 @@
 package com.abitcreative.popularmovies.adapters;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
+
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by daber on 19/10/16.

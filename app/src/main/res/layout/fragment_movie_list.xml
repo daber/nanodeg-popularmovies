@@ -1,16 +1,13 @@
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.abitcreative.popularmovies.fragments.MovieListFragment"
-    android:id="@+id/recycler_view"
-    android:paddingTop="16dp"
     android:paddingStart="12dp"
+    android:paddingTop="16dp"
     android:paddingEnd="12dp"
-
-    >
-
+    tools:context="com.abitcreative.popularmovies.fragments.MovieListFragment" />
 
 
 
-</android.support.v7.widget.RecyclerView>
+

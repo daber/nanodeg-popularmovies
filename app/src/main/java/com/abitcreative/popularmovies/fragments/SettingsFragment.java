@@ -2,8 +2,8 @@ package com.abitcreative.popularmovies.fragments;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
+import androidx.annotation.Nullable;
 
 import com.abitcreative.popularmovies.R;
 
